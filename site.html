@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Botão de Amor</title>
+    <style>
+        body {
+            background-color: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            color: white; /* Definindo a cor do texto como branco */
+        }
+
+        #loveButton {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background-color: red;
+            border: none;
+            cursor: pointer;
+            outline: none;
+            display: none; /* Escondendo o botão por padrão */
+        }
+
+        #poemContainer {
+            text-align: center;
+            display: none;
+            max-width: 80%;
+        }
+
+        #poemContent {
+            text-align: justify; /* Justificar o texto */
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            line-height: 1.6; /* Espaçamento entre as linhas */
+            max-width: 100%; /* Largura máxima do poema */
+            overflow-x: auto; /* Adicionando scroll horizontal caso o texto seja muito longo */
+        }
+
+        /* Animação para esconder o botão */
+        .hideButton {
+            animation: hideButtonAnimation 0.5s ease forwards;
+        }
+
+        @keyframes hideButtonAnimation {
+            to {
+                opacity: 0;
+                transform: scale(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <button id="loveButton"></button>
+
+    <div id="poemContainer">
+        <div id="poemContent"></div> <!-- Div para envolver o texto do poema -->
+    </div>
+
+    <script>
+        const loveButton = document.getElementById('loveButton');
+        const poemContainer = document.getElementById('poemContainer');
+        const poemContent = document.getElementById('poemContent');
+
+        // Lista de poemas sobre amor
+        const lovePoems = [
+            `Amar é encontrar nas simples coisas Razões para sorrir, motivos para viver. É sentir no coração uma melodia Que embala a alma, que faz renascer.
+
+            Amar é doar-se, é abraçar o mundo Com gestos de ternura, com olhar profundo. É navegar em mares de emoção, Sem medo de se perder, sem hesitar em amar.
+
+            Amar é a luz que ilumina os dias escuros, É a esperança que nos guia, que nos cura. É a mais bela canção que o coração entoa, É o amor que nos completa, que nos abençoa.`,
+            `Amor é como um raio de sol, Que aquece e ilumina os dias mais sombrios. É como uma flor que desabrocha, Trazendo beleza e perfume ao nosso mundo.
+
+            Amor é doce como o mel, E forte como uma tempestade. É o laço que une corações distantes, E a chama que nunca se apaga.
+
+            No amor encontramos nossa verdadeira essência, Nossa razão de ser, nossa felicidade plena. Que possamos amar e ser amados, E assim, conhecer a mais pura forma de vida.`,
+            `O amor é como uma dança suave, Onde os corações se encontram e se entrelaçam. É um sentimento que transcende o tempo, E que nos faz sentir vivos e completos.
+
+            No amor encontramos a nossa verdade, A razão pela qual estamos aqui. É a força que nos impulsiona, E a calma que nos acalenta nos momentos difíceis.
+
+            Que possamos celebrar o amor em todas as suas formas, E cultivá-lo com carinho e dedicação. Pois é no amor que encontramos a verdadeira essência da vida, E a felicidade que tanto buscamos.`,
+        ];
+
+        // Mostrar um poema aleatório ao clicar no botão
+        loveButton.addEventListener('click', function() {
+            loveButton.classList.add('hideButton'); // Adicionar a classe para esconder o botão
+            const randomIndex = Math.floor(Math.random() * lovePoems.length);
+            poemContent.innerHTML = '<p>' + lovePoems[randomIndex].split('\n').join('</p><p>') + '</p>'; // Formatar o poema
+            poemContainer.style.display = 'block';
+        });
+
+        // Exibir o botão após a página ser carregada
+        window.onload = function() {
+            loveButton.style.display = 'block';
+        };
+    </script>
+</body>
+</html>
